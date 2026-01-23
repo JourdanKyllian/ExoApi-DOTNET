@@ -4,7 +4,7 @@ namespace Archi.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class WeatherController
+public class WeatherController : ControllerBase
 {
     [HttpGet]
     public IActionResult Get()
