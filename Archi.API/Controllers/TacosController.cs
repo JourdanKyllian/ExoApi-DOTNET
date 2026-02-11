@@ -1,22 +1,28 @@
 using Archi.API.Data;
 using Archi.API.Models;
+using Archi.library.Controllers;
 using Microsoft.AspNetCore.Mvc;
+
+namespace Archi.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class TacosController : ControllerBase
+public class TacosController : BaseController<ArchiDbContext, TacosModel>
 {
-    private readonly ArchiDbContext _context;
 
-    public TacosController(ArchiDbContext context)
+    public TacosController(ArchiDbContext context) : base(context)
     {
-        _context = context;
     }
 
-    [HttpGet]
-    public ActionResult<IEnumerable<TacosModel>> Get()
+    [HttpGet("{id}")]
+    public ActionResult<TacosModel> GetById([FromRoute]int id)
     {
-        return _context.Tacos.ToList();
+        var tacos = _context.Tacos.Find(id);
+        if (tacos == null)
+        {
+            return NotFound();
+        }
+        return Ok(tacos);
     }
 
     [HttpPost]
@@ -32,5 +38,39 @@ public class TacosController : ControllerBase
         {
             return BadRequest(ModelState);
         }
+    }
+
+    [HttpPut("{id}")]
+    public ActionResult Put([FromRoute]int id, [FromBody]TacosModel tacos)
+    {
+        if (id != tacos.Id)
+        {
+            return BadRequest();
+        }
+        var existingTacos = _context.Tacos.Find(id);
+        if (existingTacos == null)
+        {
+            return NotFound();
+        }
+        if (ModelState.IsValid)
+        {
+            _context.Entry(existingTacos).CurrentValues.SetValues(tacos);
+            _context.SaveChanges();
+            return NoContent();
+        }
+        return BadRequest(ModelState);
+    }
+
+    [HttpDelete("{id}")]
+    public ActionResult Delete([FromRoute]int id)
+    {
+        var tacos = _context.Tacos.Find(id);
+        if (tacos == null)
+        {
+            return NotFound();
+        }
+        _context.Tacos.Remove(tacos);
+        _context.SaveChanges();
+        return NoContent();
     }
 }
