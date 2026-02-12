@@ -32,7 +32,7 @@ namespace Archi.Library.Controllers
         {
             var entity = _context.Set<M>().Find(id);
 
-            if (entity == null || !entity.IsDeleted)
+            if (entity == null || entity.IsDeleted)
                 return NotFound();
 
             return Ok(entity);
