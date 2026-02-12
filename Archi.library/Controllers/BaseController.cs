@@ -20,7 +20,7 @@ namespace Archi.Library.Controllers
         public virtual ActionResult<IEnumerable<M>> Get()
         {
             var entities = _context.Set<M>()
-                                   .Where(x => x.IsDeleted)
+                                   .Where(x => !x.IsDeleted)
                                    .ToList();
 
             return Ok(entities);
