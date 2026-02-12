@@ -74,6 +74,7 @@ namespace Archi.Library.Controllers
             return NoContent();
         }
 
+        // DELETE (Soft delete via BaseDbContext)
         [HttpDelete("{id}")]
         public virtual ActionResult Delete([FromRoute]int id)
         {
