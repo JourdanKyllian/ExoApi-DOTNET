@@ -17,7 +17,7 @@ namespace Archi.Library.Controllers
 
         // GET ALL
         [HttpGet]
-        public virtual ActionResult<IEnumerable<M>> Get()
+        public virtual ActionResult<IEnumerable<M>> GetAll()
         {
             var entities = _context.Set<M>()
                                    .Where(x => !x.IsDeleted)
@@ -74,7 +74,6 @@ namespace Archi.Library.Controllers
             return NoContent();
         }
 
-        // DELETE (Soft delete via BaseDbContext)
         [HttpDelete("{id}")]
         public virtual ActionResult Delete([FromRoute]int id)
         {
