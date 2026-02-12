@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace Archi.API.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
+[ApiVersion("1.0")]
 public class TacosController : BaseController<ArchiDbContext, TacosModel>
 {
     public TacosController(ArchiDbContext context)
