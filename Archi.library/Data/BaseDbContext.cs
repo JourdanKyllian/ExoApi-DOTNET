@@ -34,7 +34,7 @@ namespace Archi.Api.Models
                 if (entry.Entity is BaseModel model)
                 {
                     entry.State = EntityState.Modified;
-                    model.IsActive = false;
+                    model.IsDeleted = true;
                     model.DeletedAt = DateTime.UtcNow;
                 }
             }
