@@ -1,4 +1,6 @@
 <Solution>
+  <Project Path="Archi.API.Tests/Archi.API.Tests.csproj" />
   <Project Path="Archi.API/Archi.API.csproj" />
+  <Project Path="Archi.Library.Tests/Archi.Library.Tests.csproj" />
   <Project Path="Archi.library/Archi.library.csproj" />
 </Solution>
