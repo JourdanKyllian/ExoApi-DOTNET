@@ -19,7 +19,7 @@ namespace Archi.Library.Controllers
 
         // GET ALL (pagination)
         [HttpGet]
-        public virtual ActionResult<IEnumerable<M>> GetAll([FromQuery] string range = "0-25")
+        public virtual ActionResult<IEnumerable<M>> GetAll([FromQuery] string range = "0-25", [FromQuery] string? fields = null)
         {
             var query = _context.Set<M>().Where(x => !x.IsDeleted);
             var rangeValues = range.Split('-');
@@ -41,6 +41,12 @@ namespace Archi.Library.Controllers
             Response.Headers.Add("Content-Range", $"{start}-{finalEnd}/{totalItems}");
             Response.Headers.Add("Accept-Range", $"{typeof(M).Name} {maxLimit}");
             GenerateLinkHeader(start, countToFetch, totalItems);
+
+            if (!string.IsNullOrWhiteSpace(fields))
+            {
+                var partial = ApplyPartialFields(entities, fields);
+                return Ok(partial);
+            }
 
             return Ok(entities);
         }
@@ -80,7 +86,6 @@ namespace Archi.Library.Controllers
             var query = _context.Set<M>().Where(x => !x.IsDeleted);
 
             query = ApplyFilters(query, q);
-
            
             query = ApplySort(query, q.Sort, q.Asc, q.Desc);
 
