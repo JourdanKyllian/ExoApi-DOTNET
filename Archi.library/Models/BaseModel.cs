@@ -19,5 +19,7 @@ namespace Archi.Api.Models
 
         [Required]
         public bool IsDeleted { get; set; } = false;
+
+        public string? Type { get; set; }
     }
 }

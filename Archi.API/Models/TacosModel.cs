@@ -6,6 +6,7 @@ namespace Archi.API.Models;
 //[Table("Tacos")]
 public class TacosModel : BaseModel
 {
+    public TacosModel() { this.Type = "tacos"; }
 
     [Required(ErrorMessage = "{0} is required")]
     [StringLength(100, ErrorMessage = "{0} must be at most {1} characters")]
