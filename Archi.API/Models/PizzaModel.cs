@@ -3,7 +3,6 @@ using Archi.Api.Models;
 
 namespace Archi.API.Models;
 
-
 //[Table("Pizza")]
 public class PizzaModel : BaseModel
 {
