@@ -1,0 +1,18 @@
+Hadj Rabah Zine Eddine
+Jourdan Kyllian
+
+
+Responsabilités de Zine Eddine :
+Implémentation de la documentation API avec SwaggerUI
+Implémentation du versioning
+Implémentation des logs avec Serilog
+Développement du système de recherche générique
+Création des tests unitaires pour la librairie et l’API
+Implémentation de la recherche avec filtres et tri
+
+
+Responsabilités de Kyllian :
+Développement de la librairie REST
+Implémentation du CRUD générique
+Implémentation de la pagination
+Gestion de la base de données avec Entity Framework et migrations
