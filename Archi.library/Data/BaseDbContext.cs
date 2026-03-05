@@ -4,9 +4,8 @@ namespace Archi.Api.Models
 {
     public abstract class BaseDbContext : DbContext
     {
-        public BaseDbContext(DbContextOptions options) : base(options)
-        {
-        }
+        public BaseDbContext(DbContextOptions options) : base(options) { }
+
         public override int SaveChanges()
         {
             ChangeAddedState();
@@ -15,7 +14,9 @@ namespace Archi.Api.Models
             return base.SaveChanges();
         }
 
-        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        public override Task<int> SaveChangesAsync(
+            bool acceptAllChangesOnSuccess,
+            CancellationToken cancellationToken = default)
         {
             ChangeAddedState();
             ChangeModifiedState();

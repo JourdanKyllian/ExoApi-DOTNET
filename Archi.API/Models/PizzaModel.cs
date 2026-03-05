@@ -6,6 +6,7 @@ namespace Archi.API.Models;
 //[Table("Pizza")]
 public class PizzaModel : BaseModel
 {
+    public PizzaModel() { this.Type = "pizza"; }
 
     [Required(ErrorMessage = "{0} is required")]
     [StringLength(100, ErrorMessage = "{0} must be at most {1} characters")]
